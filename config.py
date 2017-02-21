@@ -1,6 +1,10 @@
 #!/usr/bin/python
 """
+This scrip will read a file with a list of ip addresses and connect over ssh or telnet
+to make the changes listed in config_commands variable.
 
+You can use whatever you'd like in the config_commands var.  For the original intent of this Script
+we had to add snmp information to prepare for a Prime Infrastructure inventory discovery.
 """
 
 #import netmiko
