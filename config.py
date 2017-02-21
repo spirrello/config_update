@@ -66,7 +66,12 @@ for ip in ip_list:
         print("Check configuration:")
 
         print(output)
-
+        if config_args.os == 'ios':
+            output = net_connect.exit_config_mode()
+            output = net_connect.send_command("write")
+        if config_args.os == 'nxos':
+            output = net_connect.exit_config_mode()
+            output = net_connect.send_command("copy run start")
         net_connect.disconnect()
 
     except Exception as e:
