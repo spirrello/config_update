@@ -13,7 +13,6 @@ import getpass
 import argparse
 
 #Configurations to push.
-#snmp_acl = 'SNMP-MGT'
 snmp_read = 'snmp-server community READONLY RO'
 snmp_write = 'snmp-server community READWRITE RW'
 snmp_location = 'snmp-server location LOCATION'
@@ -52,7 +51,8 @@ for ip in ip_list:
         print("\nConnecting to {0}".format(ip.rstrip()))
         #Needed logic for devices that have Telnet only vs SSH.
         if config_args.conn == 'telnet' and config_args.os == 'ios':
-            net_connect = ConnectHandler(device_type='cisco_ios_telnet', ip=ip.rstrip(),username=username,password=password,timeout=5)
+            net_connect = ConnectHandler(device_type='cisco_ios_telnet', ip=ip.rstrip(),password=password,secret=password,timeout=5)
+            net_connect.enable()
         if config_args.conn == 'ssh' and config_args.os == 'ios':
             net_connect = ConnectHandler(device_type='cisco_ios', ip=ip.rstrip(),username=username,password=password,timeout=5)
         if config_args.conn == 'ssh' and config_args.os == 'nxos':
